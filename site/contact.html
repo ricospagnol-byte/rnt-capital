@@ -16,7 +16,7 @@
 <aside class="market-ticker" aria-label="Live market prices">
   <div class="tradingview-widget-container">
     <div class="tradingview-widget-container__widget"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embed/widget-ticker-tape.js" async>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
     {
       "symbols": [
         { "proName": "FX:EURUSD", "title": "EUR/USD" },
@@ -106,66 +106,76 @@
 
         <div style="margin-bottom: 4px;">
           <span class="eyebrow">Application</span>
-          <h2 style="margin-top: 12px; font-size: 28px;">Get in touch</h2>
+          <h2 style="margin-top: 12px; font-size: 28px;">Tell us a bit about you</h2>
         </div>
 
-        <div class="field">
-          <label for="fullname">Full name <span class="req" aria-hidden="true">*</span></label>
-          <input id="fullname" name="fullname" type="text" placeholder="Jane Doe" required autocomplete="name" />
+        <!-- Name -->
+        <div class="field" id="field-name">
+          <label for="apply-name">Name <span class="req" aria-hidden="true">*</span></label>
+          <input id="apply-name" name="name" type="text" placeholder="Jane Doe" required minlength="2" autocomplete="name" />
+          <span class="field-error" hidden>Please tell us your name.</span>
         </div>
 
-        <div class="field-row">
-          <div class="field">
-            <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" />
+        <!-- Email -->
+        <div class="field" id="field-email">
+          <label for="apply-email">Email <span class="req" aria-hidden="true">*</span></label>
+          <input id="apply-email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" />
+          <span class="field-error" hidden>Enter a valid email address so we can reply.</span>
+        </div>
+
+        <!-- Experience -->
+        <div class="field" id="field-experience">
+          <label for="apply-experience">Trading experience level <span class="req" aria-hidden="true">*</span></label>
+          <select id="apply-experience" name="experience" required>
+            <option value="">Select one…</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+          <span class="field-error" hidden>Pick the level that fits you best.</span>
+        </div>
+
+        <!-- Markets -->
+        <div class="field" id="field-markets">
+          <label>Markets you trade <span class="req" aria-hidden="true">*</span></label>
+          <div class="checkbox-grid" role="group" aria-label="Markets traded">
+            <label class="checkbox-cell">
+              <input type="checkbox" name="markets" value="FX" />
+              <span>FX</span>
+            </label>
+            <label class="checkbox-cell">
+              <input type="checkbox" name="markets" value="Indices" />
+              <span>Indices</span>
+            </label>
+            <label class="checkbox-cell">
+              <input type="checkbox" name="markets" value="Crypto" />
+              <span>Crypto</span>
+            </label>
+            <label class="checkbox-cell">
+              <input type="checkbox" name="markets" value="Commodities" />
+              <span>Commodities</span>
+            </label>
           </div>
-          <div class="field">
-            <label for="phone">Phone <span class="req" aria-hidden="true">*</span></label>
-            <input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" required autocomplete="tel" />
-          </div>
+          <span class="help">Pick all that apply.</span>
+          <span class="field-error" hidden>Pick at least one market.</span>
         </div>
 
-        <div class="field-row">
-          <div class="field">
-            <label for="experience">Trading experience</label>
-            <select id="experience" name="experience">
-              <option value="">Select one…</option>
-              <option>Brand new — no live trades yet</option>
-              <option>Beginner — under 1 year</option>
-              <option>Intermediate — 1–3 years</option>
-              <option>Experienced — 3+ years</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="markets">Markets you trade</label>
-            <select id="markets" name="markets">
-              <option value="">Select one…</option>
-              <option>Forex / FX</option>
-              <option>Equities / stocks</option>
-              <option>Crypto</option>
-              <option>Futures</option>
-              <option>Mix / other</option>
-            </select>
-          </div>
+        <!-- Why -->
+        <div class="field" id="field-reason">
+          <label for="apply-reason">Why do you want to join? <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="apply-reason" name="reason" required minlength="10" placeholder="Tell us a bit about where you're at, what you're working on, and what you'd want out of RNT…"></textarea>
+          <span class="help">A couple of sentences is plenty.</span>
+          <span class="field-error" hidden>Give us at least a sentence so we know why you're here.</span>
         </div>
 
-        <div class="field">
-          <label for="reason">Why do you want to join? <span class="req" aria-hidden="true">*</span></label>
-          <textarea id="reason" name="reason" required placeholder="Tell us a bit about where you're at, what you're working on, and what you'd want out of RNT…"></textarea>
-          <span class="help">Don't overthink it — a few sentences is plenty. We're looking for fit, not a polished pitch.</span>
-        </div>
-
-        <div class="field">
-          <label for="referral">How did you hear about us?</label>
-          <input id="referral" name="referral" type="text" placeholder="Instagram, a friend, a podcast, etc." />
-        </div>
-
-        <div class="checkbox-row">
+        <!-- Disclaimer -->
+        <div class="checkbox-row" id="field-agree">
           <input type="checkbox" id="agree" name="agree" required />
           <label for="agree" style="text-transform: none; letter-spacing: 0; opacity: 1; font-weight: 450; font-size: 13px;">
             I understand RNT Capital provides education and community — not financial advice — and that all trading involves risk.
           </label>
         </div>
+        <span class="field-error" hidden id="agree-error">Please agree to the disclaimer to continue.</span>
 
         <div id="apply-error" hidden role="alert" style="background:#FEF2F2; color:#B91C1C; padding:12px 16px; border-radius:8px; font-size:13px; line-height:1.5; border:1px solid #FECACA;"></div>
 
@@ -213,18 +223,111 @@
   const errorBox = document.getElementById('apply-error');
   const submitBtn = form.querySelector('button[type=submit]');
 
+  // Helpers to show/hide field-level errors (next to the label)
+  const showFieldError = (fieldEl, errEl) => {
+    if (fieldEl) fieldEl.classList.add('has-error');
+    if (errEl) errEl.hidden = false;
+  };
+  const clearFieldError = (fieldEl, errEl) => {
+    if (fieldEl) fieldEl.classList.remove('has-error');
+    if (errEl) errEl.hidden = true;
+  };
+
+  // Clear field error as soon as the user fixes it
+  form.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', () => {
+      const wrap = el.closest('.field');
+      if (!wrap) return;
+      const err = wrap.querySelector('.field-error');
+      clearFieldError(wrap, err);
+    });
+  });
+  // Markets checkboxes: clear group error when any get checked
+  form.querySelectorAll('input[name="markets"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const wrap = document.getElementById('field-markets');
+      const err = wrap.querySelector('.field-error');
+      if ([...form.querySelectorAll('input[name="markets"]:checked')].length > 0) {
+        clearFieldError(wrap, err);
+      }
+    });
+  });
+  // Disclaimer agree
+  document.getElementById('agree').addEventListener('change', () => {
+    const err = document.getElementById('agree-error');
+    if (document.getElementById('agree').checked) {
+      err.hidden = true;
+      document.getElementById('field-agree').classList.remove('has-error');
+    }
+  });
+
+  function validate() {
+    let ok = true;
+    let firstInvalid = null;
+
+    const checkField = (id, predicate) => {
+      const wrap = document.getElementById(id);
+      const err = wrap.querySelector('.field-error');
+      if (!predicate()) {
+        showFieldError(wrap, err);
+        if (!firstInvalid) firstInvalid = wrap;
+        ok = false;
+      } else {
+        clearFieldError(wrap, err);
+      }
+    };
+
+    const nameVal = (form.elements['name'].value || '').trim();
+    checkField('field-name', () => nameVal.length >= 2);
+
+    const emailVal = (form.elements['email'].value || '').trim();
+    const emailRE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    checkField('field-email', () => emailRE.test(emailVal));
+
+    const expVal = form.elements['experience'].value;
+    checkField('field-experience', () => !!expVal);
+
+    const markets = [...form.querySelectorAll('input[name="markets"]:checked')].map(el => el.value);
+    checkField('field-markets', () => markets.length > 0);
+
+    const reasonVal = (form.elements['reason'].value || '').trim();
+    checkField('field-reason', () => reasonVal.length >= 10);
+
+    const agree = document.getElementById('agree');
+    const agreeErr = document.getElementById('agree-error');
+    if (!agree.checked) {
+      document.getElementById('field-agree').classList.add('has-error');
+      agreeErr.hidden = false;
+      if (!firstInvalid) firstInvalid = document.getElementById('field-agree');
+      ok = false;
+    } else {
+      document.getElementById('field-agree').classList.remove('has-error');
+      agreeErr.hidden = true;
+    }
+
+    if (!ok && firstInvalid) {
+      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return { ok, markets, name: nameVal, email: emailVal, experience: expVal, reason: reasonVal };
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     errorBox.hidden = true;
+
+    const v = validate();
+    if (!v.ok) return;
+
     const originalText = submitBtn.textContent;
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
 
+    // Build clean payload — collapse multi-checkbox `markets` into a single string
     const data = new FormData(form);
-    const name = (data.get('fullname') || '').toString().trim() || 'Unnamed applicant';
-    data.set('subject', 'New RNT Capital application — ' + name);
-    const emailValue = data.get('email');
-    if (emailValue) data.append('replyto', emailValue);
+    data.delete('markets');
+    data.set('markets', v.markets.join(', '));
+    data.set('subject', 'New RNT Capital application — ' + v.name);
+    data.append('replyto', v.email);
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
