@@ -12,6 +12,29 @@
 </head>
 <body>
 
+<!-- Live market ticker (TradingView) -->
+<aside class="market-ticker" aria-label="Live market prices">
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embed/widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        { "proName": "FX:EURUSD", "title": "EUR/USD" },
+        { "proName": "FX:GBPUSD", "title": "GBP/USD" },
+        { "proName": "BITSTAMP:BTCUSD", "title": "BTC/USD" },
+        { "proName": "OANDA:XAUUSD", "title": "Gold" },
+        { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
+      ],
+      "showSymbolLogo": false,
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+    </script>
+  </div>
+</aside>
+
 <header class="site-header">
   <div class="wrap nav">
     <a href="index.html" class="lockup" aria-label="RNT Capital home">

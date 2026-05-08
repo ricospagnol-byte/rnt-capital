@@ -12,6 +12,29 @@
 </head>
 <body>
 
+<!-- Live market ticker (TradingView) -->
+<aside class="market-ticker" aria-label="Live market prices">
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embed/widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        { "proName": "FX:EURUSD", "title": "EUR/USD" },
+        { "proName": "FX:GBPUSD", "title": "GBP/USD" },
+        { "proName": "BITSTAMP:BTCUSD", "title": "BTC/USD" },
+        { "proName": "OANDA:XAUUSD", "title": "Gold" },
+        { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
+      ],
+      "showSymbolLogo": false,
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+    </script>
+  </div>
+</aside>
+
 <header class="site-header">
   <div class="wrap nav">
     <a href="index.html" class="lockup" aria-label="RNT Capital home">
@@ -66,41 +89,6 @@
         <span class="hero-pulse" style="right: 28px; top: 64px;" aria-hidden="true"></span>
         <div class="meta"><span>MON</span><span>WED</span><span>FRI</span></div>
       </div>
-    </div>
-  </section>
-
-  <!-- Market ticker -->
-  <section class="ticker" aria-label="Markets we cover">
-    <div class="ticker-track">
-      <span class="ticker-item"><span class="dot"></span>EUR / USD</span>
-      <span class="ticker-item"><span class="dot"></span>GBP / USD</span>
-      <span class="ticker-item"><span class="dot"></span>USD / JPY</span>
-      <span class="ticker-item"><span class="dot"></span>S&P 500</span>
-      <span class="ticker-item"><span class="dot"></span>Nasdaq 100</span>
-      <span class="ticker-item"><span class="dot"></span>Dow 30</span>
-      <span class="ticker-item"><span class="dot"></span>FTSE 100</span>
-      <span class="ticker-item"><span class="dot"></span>DAX</span>
-      <span class="ticker-item"><span class="dot"></span>Nikkei 225</span>
-      <span class="ticker-item"><span class="dot"></span>Gold</span>
-      <span class="ticker-item"><span class="dot"></span>Brent Crude</span>
-      <span class="ticker-item"><span class="dot"></span>BTC / USD</span>
-      <span class="ticker-item"><span class="dot"></span>ETH / USD</span>
-      <span class="ticker-item"><span class="dot"></span>Risk · Structure · Patience</span>
-      <!-- duplicated for seamless loop -->
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>EUR / USD</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>GBP / USD</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>USD / JPY</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>S&P 500</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>Nasdaq 100</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>Dow 30</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>FTSE 100</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>DAX</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>Nikkei 225</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>Gold</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>Brent Crude</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>BTC / USD</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>ETH / USD</span>
-      <span class="ticker-item" aria-hidden="true"><span class="dot"></span>Risk · Structure · Patience</span>
     </div>
   </section>
 
