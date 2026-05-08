@@ -16,22 +16,6 @@
 <aside class="market-ticker" aria-label="Live market prices">
   <div class="tradingview-widget-container">
     <div class="tradingview-widget-container__widget"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-    {
-      "symbols": [
-        { "proName": "FX:EURUSD", "title": "EUR/USD" },
-        { "proName": "FX:GBPUSD", "title": "GBP/USD" },
-        { "proName": "BITSTAMP:BTCUSD", "title": "BTC/USD" },
-        { "proName": "OANDA:XAUUSD", "title": "Gold" },
-        { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" }
-      ],
-      "showSymbolLogo": false,
-      "isTransparent": true,
-      "displayMode": "adaptive",
-      "colorTheme": "dark",
-      "locale": "en"
-    }
-    </script>
   </div>
 </aside>
 
@@ -172,15 +156,33 @@
         <div class="checkbox-row" id="field-agree">
           <input type="checkbox" id="agree" name="agree" required />
           <label for="agree" style="text-transform: none; letter-spacing: 0; opacity: 1; font-weight: 450; font-size: 13px;">
-            I understand RNT Capital provides education and community — not financial advice — and that all trading involves risk.
+            I understand RNT Capital provides education and community — not licensed financial advice — and that all trading involves significant risk. (See <a href="risk.html" target="_blank" rel="noopener" class="accent">Risk Disclosure</a>.)
           </label>
         </div>
         <span class="field-error" hidden id="agree-error">Please agree to the disclaimer to continue.</span>
 
+        <!-- Age confirmation -->
+        <div class="checkbox-row" id="field-age">
+          <input type="checkbox" id="age" name="age_18_plus" required />
+          <label for="age" style="text-transform: none; letter-spacing: 0; opacity: 1; font-weight: 450; font-size: 13px;">
+            I confirm I am 18 years of age or older.
+          </label>
+        </div>
+        <span class="field-error" hidden id="age-error">You must be 18 or older to apply.</span>
+
+        <!-- GDPR consent -->
+        <div class="checkbox-row" id="field-gdpr">
+          <input type="checkbox" id="gdpr" name="gdpr_consent" required />
+          <label for="gdpr" style="text-transform: none; letter-spacing: 0; opacity: 1; font-weight: 450; font-size: 13px;">
+            I agree to my data being stored and processed by RNT Capital in accordance with the <a href="privacy.html" target="_blank" rel="noopener" class="accent">Privacy Policy</a>.
+          </label>
+        </div>
+        <span class="field-error" hidden id="gdpr-error">Please give consent to continue — we can't process your application without it.</span>
+
         <div id="apply-error" hidden role="alert" style="background:#FEF2F2; color:#B91C1C; padding:12px 16px; border-radius:8px; font-size:13px; line-height:1.5; border:1px solid #FECACA;"></div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 8px; flex-wrap: wrap;">
-          <span class="help">We'll never share your details. <a href="#" class="accent">Privacy</a></span>
+          <span class="help">We'll never share your details. See our <a href="privacy.html" class="accent">Privacy Policy</a>.</span>
           <button type="submit" class="btn btn-primary">Submit application →</button>
         </div>
       </form>
@@ -209,9 +211,9 @@
       </div>
       <div class="footer-col"><h4>Site</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="approach.html">Approach</a></li><li><a href="education.html">Education</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.instagram.com/rnt.capital/" target="_blank" rel="noopener">Instagram</a></li><li><a href="mailto:rntcapital365@gmail.com">Email us</a></li></ul></div>
-      <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Disclosures</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li><li><a href="risk.html">Risk Disclosure</a></li><li><a href="#" data-cookie-action="manage">Cookie preferences</a></li></ul></div>
     </div>
-    <div class="footer-meta"><span>© 2026 RNT Capital</span><span>Network · Trade · Grow</span><span>Est 2026</span></div>
+    <p class="footer-disclaimer">RNT Capital is a trading education community based in Malta. We do not provide licensed financial advice. Trading involves significant risk and you may lose more than your initial investment. Past performance is not indicative of future results. RNT Capital is not regulated by the Malta Financial Services Authority (MFSA).</p><div class="footer-meta"><span>© 2026 RNT Capital · Malta</span><span>Network · Trade · Grow</span><span>Est 2026</span></div>
   </div>
 </footer>
 
@@ -252,13 +254,22 @@
       }
     });
   });
-  // Disclaimer agree
-  document.getElementById('agree').addEventListener('change', () => {
-    const err = document.getElementById('agree-error');
-    if (document.getElementById('agree').checked) {
-      err.hidden = true;
-      document.getElementById('field-agree').classList.remove('has-error');
-    }
+  // Three required checkboxes — clear errors as user ticks them
+  [
+    ['agree', 'agree-error', 'field-agree'],
+    ['age', 'age-error', 'field-age'],
+    ['gdpr', 'gdpr-error', 'field-gdpr']
+  ].forEach(([cbId, errId, wrapId]) => {
+    const cb = document.getElementById(cbId);
+    const err = document.getElementById(errId);
+    const wrap = document.getElementById(wrapId);
+    if (!cb) return;
+    cb.addEventListener('change', () => {
+      if (cb.checked) {
+        if (err) err.hidden = true;
+        if (wrap) wrap.classList.remove('has-error');
+      }
+    });
   });
 
   function validate() {
@@ -293,17 +304,25 @@
     const reasonVal = (form.elements['reason'].value || '').trim();
     checkField('field-reason', () => reasonVal.length >= 10);
 
-    const agree = document.getElementById('agree');
-    const agreeErr = document.getElementById('agree-error');
-    if (!agree.checked) {
-      document.getElementById('field-agree').classList.add('has-error');
-      agreeErr.hidden = false;
-      if (!firstInvalid) firstInvalid = document.getElementById('field-agree');
-      ok = false;
-    } else {
-      document.getElementById('field-agree').classList.remove('has-error');
-      agreeErr.hidden = true;
-    }
+    // Three required checkboxes: disclaimer, age 18+, GDPR consent
+    [
+      ['agree', 'agree-error', 'field-agree'],
+      ['age', 'age-error', 'field-age'],
+      ['gdpr', 'gdpr-error', 'field-gdpr']
+    ].forEach(([cbId, errId, wrapId]) => {
+      const cb = document.getElementById(cbId);
+      const err = document.getElementById(errId);
+      const wrap = document.getElementById(wrapId);
+      if (!cb.checked) {
+        wrap.classList.add('has-error');
+        if (err) err.hidden = false;
+        if (!firstInvalid) firstInvalid = wrap;
+        ok = false;
+      } else {
+        wrap.classList.remove('has-error');
+        if (err) err.hidden = true;
+      }
+    });
 
     if (!ok && firstInvalid) {
       firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -350,6 +369,7 @@
   });
 })();
 </script>
+<script src="cookie-consent.js" defer></script>
 <script src="reveal.js" defer></script>
 </body>
 </html>
