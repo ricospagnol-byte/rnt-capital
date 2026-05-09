@@ -405,6 +405,49 @@ h3 { font-weight: 600; font-size: 22px; letter-spacing: -0.4px; }
 }
 .stat-cell .lbl { font-size: 12px; font-weight: 500; opacity: 0.65; }
 
+/* ── Stats cards (homepage) — robust block layout ──────────────────────── */
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.stat-card {
+  display: block;
+  padding: 28px 24px;
+  background: white;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease);
+}
+.stat-card:hover {
+  border-color: rgba(30, 91, 214, 0.28);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.stat-card-value {
+  display: block;
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: -1.4px;
+  color: var(--brand);
+  font-feature-settings: "tnum";
+  margin-bottom: 12px;
+}
+.stat-card-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink);
+  opacity: 0.72;
+}
+@media (max-width: 720px) {
+  .stats-cards { grid-template-columns: 1fr; gap: 12px; }
+  .stat-card { padding: 22px 20px; }
+  .stat-card-value { font-size: 36px; }
+}
+
 /* ── Live market ticker (TradingView widget) ──────────────────────────── */
 .market-ticker {
   background: var(--ink);
