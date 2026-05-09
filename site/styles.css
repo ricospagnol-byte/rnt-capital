@@ -284,34 +284,182 @@ h3 { font-weight: 600; font-size: 22px; letter-spacing: -0.4px; }
   pointer-events: none;
 }
 
-/* ── Hero chart ─────────────────────────────────────────────────────────── */
-.hero-visual {
-  background: white;
-  border: 1px solid var(--hairline);
-  border-radius: 14px; padding: 28px;
-  display: flex; flex-direction: column; gap: 18px; height: 100%;
-  box-shadow: var(--shadow-md);
+/* ── Hero chart panel (TradingView Symbol Overview) ────────────────────── */
+.hero-visual-wrap {
+  height: 100%;
+  min-height: 420px;
+  display: block;
+}
+.hero-chart {
+  background: var(--ink);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  height: 100%;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -25px rgba(11, 31, 58, 0.5);
   position: relative;
 }
-.hero-visual .meta {
-  display: flex; justify-content: space-between;
-  font-size: 10px; font-weight: 500; letter-spacing: 2px; opacity: 0.55;
+.hero-chart-head {
+  padding: 16px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex: none;
 }
-.hero-visual .stat {
-  font-size: 11px; font-weight: 600; color: var(--brand); letter-spacing: 1px;
+.hero-chart-symbol {
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1.5px;
 }
-.hero-pulse {
+.hero-chart .tradingview-widget-container {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  min-height: 320px;
+  position: relative;
+}
+.hero-chart .tradingview-widget-container__widget {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+}
+.hero-chart-foot {
+  padding: 8px 22px;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: right;
+  flex: none;
+}
+.hero-chart-fallback {
   position: absolute;
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: var(--brand);
-  box-shadow: 0 0 0 0 rgba(30,91,214,0.6);
-  animation: pulse 2.4s var(--ease) infinite;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
 }
-@keyframes pulse {
-  0%   { box-shadow: 0 0 0 0    rgba(30,91,214,0.45); }
-  70%  { box-shadow: 0 0 0 14px rgba(30,91,214,0); }
-  100% { box-shadow: 0 0 0 0    rgba(30,91,214,0); }
+.hero-chart-fallback p {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.hero-chart-fallback-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  transition: border-color .2s var(--ease), background .2s var(--ease);
+}
+.hero-chart-fallback-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Approach: clean Do/Don't list (no · prefix) ───────────────────────── */
+.practice-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 15px;
+}
+.practice-list li {
+  position: relative;
+  padding-left: 26px;
+  line-height: 1.55;
+}
+.practice-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 14px;
+  height: 8px;
+  border-left: 2px solid var(--brand);
+  border-bottom: 2px solid var(--brand);
+  transform: rotate(-45deg);
+  border-bottom-left-radius: 2px;
+}
+.practice-list--negative li {
+  opacity: 0.92;
+}
+.practice-list--negative li::before {
+  border: 0;
+  width: 12px;
+  height: 12px;
+  top: 7px;
+  background:
+    linear-gradient(45deg, transparent calc(50% - 1px), #B91C1C calc(50% - 1px), #B91C1C calc(50% + 1px), transparent calc(50% + 1px)),
+    linear-gradient(-45deg, transparent calc(50% - 1px), #B91C1C calc(50% - 1px), #B91C1C calc(50% + 1px), transparent calc(50% + 1px));
+  transform: none;
+  border-radius: 0;
+}
+
+/* ── Education: member-only notes (replace dead links) ─────────────────── */
+.member-only-note {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--brand);
+  background: var(--faint);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(30, 91, 214, 0.18);
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.member-only-note--inline {
+  align-self: auto;
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+/* ── About: founder bio placeholders ───────────────────────────────────── */
+.bio-placeholder {
+  text-align: center;
+  padding: 48px 32px;
+  border-style: dashed;
+  background: var(--mist);
+}
+.bio-placeholder .tag {
+  align-self: center;
+  margin: 0 auto 14px;
+}
+.bio-placeholder h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+.bio-placeholder p {
+  margin: 0;
 }
 
 /* ── Page hero ──────────────────────────────────────────────────────────── */
