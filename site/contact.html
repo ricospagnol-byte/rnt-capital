@@ -47,12 +47,6 @@
           <span class="pill"><span class="dot"></span>Open intake · Cohort 01</span>
         </div>
         <div>
-          <span class="eyebrow muted">Email us</span>
-          <h3 style="margin: 12px 0 6px; font-size: 19px;"><a href="mailto:rntcapital365@gmail.com" style="color: var(--ink);">rntcapital365@gmail.com</a></h3>
-          <p class="muted" style="font-size: 13px;">Easier to email? Drop us a line. We read every one.</p>
-        </div>
-        <div class="divider"></div>
-        <div>
           <span class="eyebrow muted">Find us on</span>
           <ul style="list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-direction: column; gap: 8px; font-size: 14px;">
             <li><a href="https://www.instagram.com/rnt.capital/" target="_blank" rel="noopener" class="btn-link" style="padding:0;">Instagram → @rnt.capital</a></li>
@@ -66,15 +60,15 @@
         <div class="divider"></div>
         <div>
           <span class="eyebrow muted">Membership</span>
-          <p style="margin: 12px 0 0; font-size: 14px;">There's a small monthly fee for being in the group. We share the pricing with you once we've reviewed your application, so nothing comes as a surprise.</p>
+          <p style="margin: 12px 0 0; font-size: 14px;">RNT membership is free. We provide education and ongoing guidance to help you succeed in trading and building your network.</p>
         </div>
         <div class="divider"></div>
         <div>
           <span class="eyebrow muted">What happens next</span>
           <ol style="margin: 14px 0 0; padding-left: 20px; font-size: 14px; line-height: 1.7; opacity: 0.85;">
-            <li>We read every application ourselves.</li>
-            <li>We get back to you within 48 hours, often faster.</li>
-            <li>We ask a couple of follow-up questions to get a feel for fit.</li>
+            <li>We read your application ourselves.</li>
+            <li>If it looks like a fit, we schedule a call to learn more about you and explain how RNT works.</li>
+            <li>On the call, we cover everything: the community, how we guide you, what to expect. No surprises.</li>
             <li>If it's the right fit, you're in. If not, we'll tell you straight.</li>
           </ol>
         </div>
@@ -186,6 +180,8 @@
         </div>
       </form>
 
+      <p class="muted form-note" style="grid-column: 2; margin: -8px 0 0; font-size: 13px; line-height: 1.6;">We read every application ourselves and reply within 48 hours, Mon–Fri. Can't access the form? Reach us on Instagram <a href="https://www.instagram.com/rnt.capital/" target="_blank" rel="noopener" class="accent">@rnt.capital</a>.</p>
+
       <!-- Success state (hidden by default) -->
       <div id="apply-success" hidden class="card" style="grid-column: 2; padding: 48px; align-items: flex-start; gap: 18px; border-color: rgba(30,91,214,0.28); box-shadow: var(--shadow-md);">
         <svg width="48" height="48" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 44 L32 20 L56 44" stroke="#0B1F3A" stroke-width="6" fill="none" /><path d="M20 50 L32 38 L44 50" stroke="#1E5BD6" stroke-width="6" fill="none" /></svg>
@@ -206,13 +202,13 @@
           <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 44 L32 20 L56 44" stroke="white" stroke-width="6" fill="none" /><path d="M20 50 L32 38 L44 50" stroke="#3B82F6" stroke-width="6" fill="none" /></svg>
           <span class="lockup-text"><span class="lockup-rnt">RNT</span><span class="lockup-cap">Capital</span></span>
         </a>
-        <p style="font-size: 13px; opacity: 0.7; max-width: 320px; margin-top: 14px;">A trading and education community built on patience, structure, and clarity.</p>
+        <p style="font-size: 13px; opacity: 0.7; max-width: 320px; margin-top: 14px;">RNT: Free trading education and community. Learn. Network. Grow.</p>
       </div>
       <div class="footer-col"><h4>Site</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="approach.html">Approach</a></li><li><a href="education.html">Education</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.instagram.com/rnt.capital/" target="_blank" rel="noopener">Instagram</a></li><li><a href="mailto:rntcapital365@gmail.com">Email us</a></li></ul></div>
       <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li><li><a href="risk.html">Risk Disclosure</a></li><li><a href="#" data-cookie-action="manage">Cookie preferences</a></li></ul></div>
     </div>
-    <p class="footer-disclaimer">RNT Capital is a trading education community based in Malta. We do not provide licensed financial advice. Trading involves significant risk and you may lose more than your initial investment. Past performance is not indicative of future results. RNT Capital is not regulated by the Malta Financial Services Authority (MFSA).</p><div class="footer-meta"><span>© 2026 RNT Capital · Malta</span><span>Network · Trade · Grow</span><span>Est 2026</span></div>
+    <p class="footer-disclaimer">RNT Capital is a trading education community based in Malta. We do not provide licensed financial advice. Trading involves significant risk and you may lose more than your initial investment. Past performance is not indicative of future results. RNT Capital is not regulated by the Malta Financial Services Authority (MFSA).</p><div class="footer-meta"><span>© 2026 RNT Capital · Malta · Network · Trade · Grow · Est. 2026</span></div>
   </div>
 </footer>
 
@@ -360,7 +356,7 @@
         throw new Error(json.message || 'Could not submit your application.');
       }
     } catch (err) {
-      errorBox.textContent = 'Something went wrong. ' + err.message + ' You can also email us directly at rntcapital365@gmail.com.';
+      errorBox.textContent = 'Something went wrong. ' + err.message + ' If the form keeps failing, reach us on Instagram @rnt.capital.';
       errorBox.hidden = false;
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
