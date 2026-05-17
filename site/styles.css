@@ -1225,6 +1225,11 @@ h3 { font-weight: 600; font-size: 22px; letter-spacing: -0.4px; }
   background: rgba(11,31,58,0.45);
 }
 
+/* ── Placeholder sections (toggle off until real content lands) ─────────
+   To restore, remove the `is-hidden-placeholder` class from the section
+   element. The HTML stays in place. */
+.is-hidden-placeholder { display: none !important; }
+
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 980px) {
   .wrap.hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
